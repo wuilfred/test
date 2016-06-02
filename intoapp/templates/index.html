@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}Index{% endblock title %}
+
+{% block content %}
+
+
+    {% csrf_token %}
+
+
+
+    {% for dt in ticket %}
+
+     <h2 class="page-header"></h2>
+
+            <div class='event'>
+              <div class='event-side'>
+                  <div class='dotted-line-separator'><span class='line'></span></div>
+                  <div class='event-icon'><span class='fa fa-users'></span></div>
+                  <div class='event-date'>{{ dt.id }}</div>
+                  <div class='event-time'>{{ dt.organizer }}</div>
+                  <div class='cut-out'></div>
+              </div>
+              <div class='event-body'>
+                <div class='event-image'><a href='{{ dt.ticketshop_url }}'><span class='image'></a></div>
+                <div class="event-location">{{ dt.location }}</div>
+                <div class="event-title"><h3>{{ dt.name }}</h3><span>{{ dt.price }}</span></div>
+                <div class="event-details">{{ dt.description }}</div>
+              </div>
+            </div>
+
+
+
+    <div class="container theme-showcase" role="main">
+        <div class="page-header">
+            <h1>Support</h1>
+        </div>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Ticket Subject</th>
+                <th>Last Activity</th>
+                <th>Priority</th>
+              </tr>
+            </thead>
+                <tbody>
+                {% for ep in dt.event_products %}
+                    {% if forloop.counter == 1%}
+                    {% load humanize %}
+                  <tr>
+                    <td><a href="#"><b>{{ ep.name }} </b></a><br><small class="text-muted">Price: {{ ep.price }}</small></td>
+                    <td>{{ dt.start_time}}<br><small class="text-muted">{{ dt.end_time }}</small></td>
+                    <td>
+                      <div class="btn-group pull-right">
+                        <button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i></button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#"><i class="glyphicon glyphicon-remove-circle"></i> Close Ticket</a></li>
+                        </ul>
+                      </div>
+                      <h4><span class="label label-danger">High</span></h4>
+                    </td>
+                  </tr>
+                    {% endif %}
+                    {% if forloop.counter == 2 %}
+                  <tr>
+                    <td><a href="#"><b>{{ ep.name }}</b></a><br><small class="text-muted">Price: {{ ep.price }}</small></td>
+                    <td>{{ dt.start_time}}<br><small class="text-muted">{{ dt.end_time }}</small></td>
+                    <td>
+                      <div class="btn-group pull-right">
+                        <button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i></button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#"><i class="glyphicon glyphicon-remove-circle"></i> Close Ticket</a></li>
+                        </ul>
+                      </div>
+                      <h4><span class="label label-info">Low</span></h4>
+                    </td>
+                  </tr>
+                    {% endif %}
+                    {% if forloop.counter == 3 %}
+                  <tr>
+                    <td><a href="#"><b>{{ ep.name }}</b></a><br><small class="text-muted">Price: {{ep.price }}</small></td>
+                    <td>{{ dt.start_time}}<br><small class="text-muted">{{ dt.end_time }}</small></td>
+                    <td>
+                      <div class="btn-group pull-right">
+                        <button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i></button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#"><i class="glyphicon glyphicon-remove-circle"></i> Close Ticket</a></li>
+                        </ul>
+                      </div>
+                      <h4><a href="{{ dt.ticketshop_url }}"><span class="label label-warning">Medium</span></a></h4>
+                    </td>
+                  </tr>
+                    {% endif %}
+                </tbody>
+            {% endfor %}
+            </table>
+        </div>
+     {% endfor %}
+{% endblock content %}

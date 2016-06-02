@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% for  dataticket in ticket %}
+        <br>
+        <br>
+        <h2>Event Tickets</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th>id event </th>
+                <th>Status</th>
+                <th>Name Event</th>
+                <th>Id Organizer</th>
+                <th>Location</th>
+                <th>Sold Out</th>
+                <th>begin date</th>
+                <th>end date</th>
+                <th>day event</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{dataticket.id}}</td>
+                <td>{{dataticket.status}}</td>
+                <td>{{dataticket.name}}</td>
+                <td>{{dataticket.organizer}}</td>
+                <td>{{dataticket.location}}</td>
+                <td>{{dataticket.sold_out}}</td>
+                <td>{{dataticket.start_time}}</td>
+                <td>{{dataticket.end_time}}</td>
+                <td>{{dataticket.time_string}}</td>
+              </tr>
+            </tbody>
+          </table>
+    {% endfor %}
+
+
+
+
+        <h2>Guest List</h2>
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th>id Guest</th>
+                <th>Email</th>
+                <th>user</th>
+                <th>Event</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span id="guestid"></span></td>
+                <td><span id="guestemail"></span></td>
+                <td><span id="guestuser"></span></td>
+                <td><span id="guestevent"></span></td>
+              </tr>
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}
